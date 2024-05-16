@@ -1,0 +1,41 @@
+@import url(../general/reset.css);
+@import url(../general/general.css);
+@import url(/css/components/header.css);
+
+.main{
+    background-image: url("/images/LA-RED.jpg");
+    background-size: cover; 
+    width: 100%;
+    height: 100dvh;
+    
+    .main__contentBox {
+        width: 100%;
+        height: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+    .main__content {
+        background-color: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        padding: 20px;
+        display: flex;
+        gap: 20px;
+        width: 1100px;
+        border-radius: 10px;
+        color: white;
+    }
+    .main__img {
+        border-radius: 11px;
+        width: 500px;
+        object-fit: cover;
+        aspect-ratio: 1 / 1;
+    }
+    .aboutUs__headerText {
+        margin-bottom: 20px;
+    }
+    .aboutUs__p {
+        margin-bottom: 10px;
+    }
+}
