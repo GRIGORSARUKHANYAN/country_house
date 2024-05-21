@@ -29,4 +29,12 @@
     border: 1px solid rgb(198, 198, 198);
     margin: 0;
   }
+  .registerButton {
+    background-color: #2fb1e5;
+    color: white;
+  }
+  .registerButton:disabled{
+    background-color: #dcdcdc;
+    color: #989898;
+  }
 }
