@@ -107,7 +107,24 @@ app.post('/accept', async (req, res) => {
 }
 );
 
-app.post('/reqAccept', async (req, res) => {    
+app.post('/reqAccept', async (req, res) => { 
+
+  now=new Date()
+  theDate=new Date(req.body.date)
+  if (now.getFullYear()>theDate.getFullYear() ) {
+    
+  }
+
+
+
+  let currentDate =new Date()
+  const day = currentDate.getDate(); // Gets the day (1-31)
+const month = currentDate.getMonth() + 1; // Gets the month (0-11), so we add 1 to make it (1-12)
+const year = currentDate.getFullYear(); // Gets the full year (e.g., 2024)
+
+console.log(`Current Date: ${year}/${month}/${day}`,req.body.date,req.body.date==`${year}/${month}/${day}`);
+
+  console.log(new Date(`${day}-${month}/${year}`).getTime()-new Date(req.body.date).getTime());
   if (!req.body || !req.body.date ||new Date().getTime()-new Date(req.body.date).getTime()>0 ) {
     return  res.status(400).send("data is invalid");
   }
