@@ -1,0 +1,32 @@
+@import url(../components/header.css);
+@import url(../general/reset.css);
+@import url(../general/general.css);
+
+.accept_page {
+  min-height: calc(100dvh - 76px);
+
+  .contentBox {
+    width: 500px;
+    margin: auto;
+    margin-top: 10dvh;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 20px;
+    border: 1px solid rgb(207, 207, 207);
+    background-color: rgba(0, 0, 0, .1);
+    border-radius: 4px;
+  }
+  input,
+  select,
+  button,
+  option {
+    outline: none;
+    padding: 10px 10px;
+    border-radius: 4px;
+    border: 1px solid rgb(198, 198, 198);
+    margin: 0;
+  }
+}

@@ -3,21 +3,15 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=\, initial-scale=1.0" />
+  <meta name="viewport" content="width=1.0, initial-scale=1.0" />
   <title>Document</title>
-  <link rel="stylesheet" type="text/css" href="../../css/pages/contact.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <link rel="stylesheet" href="../../css/pages/accept.css">
 </head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-<style>
-  /* Make the image fully responsive */
-  /* .carousel-inner img {
-    width: 100%;
-    height: 100%;
-  } */
-</style>
 
 <body>
   <header>
@@ -32,29 +26,24 @@
       </nav>
     </div>
   </header>
-  <main>
-    <div class="room_page" style="width: 100%; height: 500px; display: flex;">
-  <div style="background-color: red;">
-    <form >
-      <input type="date">
-    </form>
-    <div>
-      <select name="rooms" id="rooms">
-        <option value="mercedes">Mercedes</option>
-        <option value="audi">Audi</option>
-      </select>
-      <input type="text" placeholder="name">
-      <input type="text" placeholder="surname">
-      <input type="email" placeholder="examlpe@gmail.com">
-      <input type="tel" placeholder="+374 000 000">
 
-
-
+  <div class="accept_page">
+    <div class="contentBox">
+      <div class="content">
+        <input type="date" class="date">
+        <input type="text" placeholder="name" class="name">
+        <input type="text" placeholder="surname" class="surname">
+        <select name="rooms">
+          <option value="none" hidden selected>(select room)</option>
+          <!-- <option value="audi">Room 2</option> -->
+        </select>
+        <input type="email" placeholder="examlpe@gmail.com" class="email">
+        <input type="tel" placeholder="+374 000 000" class="phone">
+        <button>register day</button>
+      </div>
     </div>
   </div>
-  </main>
-  
-  
-</body>
 
+  <script type="module" src="accept.js"></script>
+</body>
 </html>
