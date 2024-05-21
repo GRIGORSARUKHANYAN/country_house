@@ -103,12 +103,7 @@ app.post('/accept', async (req, res) => {
   }
   const accept = new Accept(req.body);
    let myAccept= await accept.save()
-   if (myAccept) {
-  res.send({data:[1]});
-    
-   }
-   res.send({data:[]});
-
+  res.send(myAccept);
 }
 );
 
@@ -117,10 +112,12 @@ app.post('/reqAccept', async (req, res) => {
     return  res.status(400).send("data is invalid");
   }
   const accept = await Accept.find({date:req.body.date,isActive:true});
-  if (acepor) {
-    return  res.status(400).send("the room is already booked");
+  if (accept) {
+  res.send({data:[]});
+
+    // return  res.status(400).send("the room is already booked");
   }
-  res.send(accept);
+  res.send({data:[1]});
 }
 );
 
