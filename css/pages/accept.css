@@ -33,8 +33,15 @@
     background-color: #2fb1e5;
     color: white;
   }
-  .registerButton:disabled{
+  input:disabled,
+  select:disabled,
+  button:disabled,
+  option:disabled {
     background-color: #dcdcdc;
     color: #989898;
+  }
+
+  input::placeholder {
+    color: rgb(150, 150, 150);
   }
 }
