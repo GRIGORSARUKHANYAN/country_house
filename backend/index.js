@@ -103,7 +103,12 @@ app.post('/accept', async (req, res) => {
   }
   const accept = new Accept(req.body);
    let myAccept= await accept.save()
-  res.send(myAccept);
+   if (myAccept) {
+  res.send({data:[1]});
+    
+   }
+   res.send({data:[]});
+
 }
 );
 
