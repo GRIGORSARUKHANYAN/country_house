@@ -18,6 +18,23 @@ import jwt_decode from "jwt-decode";
 
 
 import {generateTokens} from './token.js';
+
+function isValidDate(date) {
+  let now=new Date()
+  let theDate=new Date(date)
+  if (now.getFullYear()>theDate.getFullYear() ) {
+    return  false
+  }else{
+    if (now.getMonth()>theDate.getMonth()) {
+    return  false
+    }else{
+      if (now.getDay()>theDate.getDay()) {
+    return  false
+      }
+    }
+  }
+  return true
+}
 // import authRoute from "./routes/auth.routes.js";
 
 // import UserDocument from "../models/users.model";
@@ -88,20 +105,16 @@ app.use(cors());
 // );
 
 app.post('/accept', async (req, res) => {    
-  console.log("accep",new Date().getTime()-new Date(req.body.date).getTime());
-  if (!req.body ||!req.body.room || !req.body.name || !req.body.surname ||  !req.body.email || !req.body.phone || !req.body.date || !isValidEmail(req.body.email)||new Date().getTime()-new Date(req.body.date).getTime()>0 ) {
-
+  console.log("accep",req.body);
+  if (!req.body ||!req.body.room || !req.body.name || !req.body.surname ||  !req.body.email || !req.body.phone || !req.body.date || !isValidEmail(req.body.email)||!isValidDate(req.body.date) ) {
     return  res.status(400).send("data is invalid");
   }
-  const acepor = await Accept.find({date:req.body.date,room:req.body.room,isActive:true});
-  if (acepor) {
+  let accept = await Accept.find({date:new Date(req.body.date),room:req.body.room,isActive:true});
+  if (accept.length) {
     return  res.status(400).send("the room is already booked");
   }
-  acepor = await Accept.find({date:req.body.date,room:req.body.room,email:req.body.email});
-  if (acepor) {
-    return  res.status(400).send("request is pending");
-  }
-  const accept = new Accept(req.body);
+
+   accept = new Accept(req.body);
    let myAccept= await accept.save()
   res.send(myAccept);
 }
@@ -109,37 +122,24 @@ app.post('/accept', async (req, res) => {
 
 app.post('/reqAccept', async (req, res) => { 
 
-  now=new Date()
-  theDate=new Date(req.body.date)
-  if (now.getFullYear()>theDate.getFullYear() ) {
-    
-  }
 
 
-
-  let currentDate =new Date()
-  const day = currentDate.getDate(); // Gets the day (1-31)
-const month = currentDate.getMonth() + 1; // Gets the month (0-11), so we add 1 to make it (1-12)
-const year = currentDate.getFullYear(); // Gets the full year (e.g., 2024)
-
-console.log(`Current Date: ${year}/${month}/${day}`,req.body.date,req.body.date==`${year}/${month}/${day}`);
-
-  console.log(new Date(`${day}-${month}/${year}`).getTime()-new Date(req.body.date).getTime());
-  if (!req.body || !req.body.date ||new Date().getTime()-new Date(req.body.date).getTime()>0 ) {
+  if (!req.body || !req.body.date ||!isValidDate(req.body.date) ) {
     return  res.status(400).send("data is invalid");
   }
   const accept = await Accept.find({date:req.body.date,isActive:true});
-  if (accept) {
-  res.send({data:[]});
+  console.log("aaaa",accept);
+  if (accept.length) {
+  return res.send({data:[]});
+  }else{
 
-    // return  res.status(400).send("the room is already booked");
+    return res.send({data:[1]});
   }
-  res.send({data:[1]});
 }
 );
 
 
-app.get('/pendingAccept',authMiddleware, async (req, res) => {    
+app.get('/pendingAccept', async (req, res) => {    
   const accepts = await Accept.find({isActive:false});
 res.send(accepts);
 }
@@ -149,6 +149,7 @@ app.get('/activeAccept',authMiddleware, async (req, res) => {
 res.send(accepts);
 }
 );
+
 
 
 // app.post('/lesson',authMiddleware, async (req, res) => { 
